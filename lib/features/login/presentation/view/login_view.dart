@@ -8,6 +8,8 @@ import 'package:flutter_tech/core/ui/constants/colors.dart';
 import 'package:flutter_tech/core/ui/constants/styles.dart';
 import 'package:flutter_tech/features/common/presentation/widgets/button_widget.dart';
 import 'package:flutter_tech/features/login/presentation/bloc/login_page_form_bloc.dart';
+import 'package:flutter_tech/features/login/presentation/validation/password_input.dart';
+import 'package:flutter_tech/features/login/presentation/validation/username_intput.dart';
 import 'package:flutter_tech/features/login/presentation/widgets/login_text_field.dart';
 
 class LoginView extends StatelessWidget {
@@ -53,6 +55,9 @@ class _LoginForm extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: LoginTextField(
+                errorMessage: state.usernameInput.error != null
+                    ? state.usernameInput.error?.errorMessage
+                    : "",
                 onChanged: (value) {
                   context.read<LoginPageFormBloc>().add(
                         LoginPageUsernameChanged(
@@ -75,12 +80,16 @@ class _LoginForm extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: LoginTextField(
+                errorMessage: state.passwordInput.error != null
+                    ? state.passwordInput.error?.errorMessage
+                    : "",
                 obscureText: true,
                 maxLength: 5,
                 hintText: 'Password',
                 keyboardType: TextInputType.number,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(5),
                 ],
                 onChanged: (value) {
                   context.read<LoginPageFormBloc>().add(

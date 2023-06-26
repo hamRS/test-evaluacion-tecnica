@@ -26,11 +26,11 @@ extension UsernameInputErrorMessage on PasswordInputError {
   String? get errorMessage {
     switch (this) {
       case PasswordInputError.empty:
-        return "Password no puede ser vacio";
+        return "Ingrese su contraseña";
       case PasswordInputError.notValid:
-        return "Password debe ser numerico";
+        return "Ingrese un numero";
       case PasswordInputError.lessthan5:
-        return "Password debe ser 5 digitos";
+        return "La contraseña debe tener 5 digitos";
     }
   }
 }

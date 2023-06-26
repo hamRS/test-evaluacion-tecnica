@@ -22,7 +22,7 @@ extension UsernameInputErrorMessage on UsernameInputError {
   String? get errorMessage {
     switch (this) {
       case UsernameInputError.empty:
-        return "Username no puede ser vacio";
+        return "Ingrese su nombre de usuario";
     }
   }
 }

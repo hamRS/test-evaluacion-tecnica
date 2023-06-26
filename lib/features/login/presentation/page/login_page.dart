@@ -6,6 +6,7 @@ import 'package:flutter_tech/features/login/presentation/bloc/login_page_form_bl
 import 'package:flutter_tech/features/login/presentation/view/login_view.dart';
 
 class LoginPage extends StatelessWidget {
+  static const String route = "/";
   const LoginPage({super.key});
 
   @override
