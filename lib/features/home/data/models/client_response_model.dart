@@ -1,8 +1,12 @@
 import 'package:flutter_tech/features/home/data/models/client_model.dart';
 import 'package:flutter_tech/features/home/data/models/support_model.dart';
 import 'package:flutter_tech/features/home/domain/entities/clients_response_entity.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-abstract class ClientListModel extends ClientListEntity {
+part 'client_response_model.g.dart';
+
+@JsonSerializable()
+class ClientListModel extends ClientListEntity {
   final int page;
   final int perPage;
   final int total;
@@ -25,4 +29,9 @@ abstract class ClientListModel extends ClientListEntity {
           totalPages: totalPages,
           support: support,
         );
+
+  factory ClientListModel.fromJson(Map<String, dynamic> json) =>
+      _$ClientListModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ClientListModelToJson(this);
 }

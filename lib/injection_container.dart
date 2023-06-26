@@ -1,6 +1,7 @@
 import 'package:flutter_tech/core/client/remote_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
+import '/features/home/injection.dart' as home_init;
 
 final sl = GetIt.instance;
 Future<void> init() async {
@@ -12,4 +13,6 @@ Future<void> init() async {
       client: sl(),
     ),
   );
+
+  home_init.init();
 }
