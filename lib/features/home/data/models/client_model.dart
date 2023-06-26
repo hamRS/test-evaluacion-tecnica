@@ -8,20 +8,20 @@ class ClientModel extends ClientEntity {
   ClientModel({
     required this.id,
     required this.email,
-    required this.firstName,
-    required this.lastName,
+    required this.first_name,
+    required this.last_name,
     required this.avatar,
   }) : super(
           id: id,
           avatar: avatar,
           email: email,
-          firstName: firstName,
-          lastName: lastName,
+          firstName: first_name,
+          lastName: last_name,
         );
 
   final int id;
-  final String firstName;
-  final String lastName;
+  final String first_name;
+  final String last_name;
   final String email;
   final String avatar;
 

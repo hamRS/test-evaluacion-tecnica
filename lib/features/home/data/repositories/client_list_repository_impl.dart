@@ -17,7 +17,6 @@ class ClientListRepositoryImpl implements ClientListRepository {
     try {
       final ClientListModel clientListModel =
           await clientListRemoteDataSource.getClientList();
-
       return right(clientListModel.data);
     } catch (e) {
       return left(

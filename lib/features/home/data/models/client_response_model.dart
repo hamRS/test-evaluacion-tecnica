@@ -8,25 +8,25 @@ part 'client_response_model.g.dart';
 @JsonSerializable()
 class ClientListModel extends ClientListEntity {
   final int page;
-  final int perPage;
+  final int per_page;
   final int total;
-  final int totalPages;
+  final int total_pages;
   final SupportModel support;
   final List<ClientModel> data;
 
   ClientListModel(
       {required this.page,
-      required this.perPage,
+      required this.per_page,
       required this.total,
-      required this.totalPages,
+      required this.total_pages,
       required this.data,
       required this.support})
       : super(
           data: data,
           page: page,
-          perPage: perPage,
+          perPage: per_page,
           total: total,
-          totalPages: totalPages,
+          totalPages: total_pages,
           support: support,
         );
 

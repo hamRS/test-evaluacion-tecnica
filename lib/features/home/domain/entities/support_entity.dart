@@ -1,6 +1,6 @@
 abstract class SupportEntity {
-  String url;
-  String text;
+  final String url;
+  final String text;
 
   SupportEntity({
     required this.url,

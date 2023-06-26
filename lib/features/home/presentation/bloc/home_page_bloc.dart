@@ -25,9 +25,9 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
           message: "No se pudieron cargar los users!",
         ),
       ),
-      (clientList) => emit(
+      (success) => emit(
         HomePageLoadSuccess(
-          clientList: clientList,
+          clientList: success,
         ),
       ),
     );

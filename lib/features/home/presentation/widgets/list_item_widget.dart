@@ -6,8 +6,16 @@ import 'package:flutter_tech/core/ui/constants/colors.dart';
 import 'package:flutter_tech/core/ui/constants/styles.dart';
 
 class ListItemWidget extends StatelessWidget {
-  const ListItemWidget({super.key});
+  const ListItemWidget({
+    super.key,
+    required this.nombreApellido,
+    required this.avatar,
+    required this.correo,
+  });
 
+  final String nombreApellido;
+  final String avatar;
+  final String correo;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,22 +29,23 @@ class ListItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    bottom: 10,
-                  ),
-                  child: Image.asset(
-                    LOGIN_ICON,
-                    scale: 20,
-                  ),
-                ),
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      bottom: 10,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Image.network(
+                        avatar,
+                      ),
+                    )),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Nombre Apellido",
+                    Text(
+                      nombreApellido,
                       softWrap: true,
                       style: kTextStyleBlack,
                     ),
@@ -44,8 +53,8 @@ class ListItemWidget extends StatelessWidget {
                       onTap: () {
                         //No pude implementar el hiperlink al hacer click en el email
                       },
-                      child: const Text(
-                        "someone@example.com",
+                      child: Text(
+                        correo,
                         style: kTextStyle,
                         softWrap: true,
                       ),

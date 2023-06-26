@@ -1,4 +1,5 @@
 import 'package:flutter_tech/core/client/remote_client.dart';
+import 'package:flutter_tech/features/home/data/models/client_model.dart';
 import 'package:flutter_tech/features/home/data/models/client_response_model.dart';
 
 abstract class ClientListRemoteDataSource {
@@ -16,6 +17,7 @@ class ClientListRemoteDataSourceImpl implements ClientListRemoteDataSource {
   Future<ClientListModel> getClientList() async {
     const String path = "https://reqres.in/api/users";
     final response = await remoteClient.get(path);
-    return ClientListModel.fromJson(response);
+    final result = ClientListModel.fromJson(response);
+    return result;
   }
 }

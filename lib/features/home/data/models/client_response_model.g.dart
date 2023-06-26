@@ -9,9 +9,9 @@ part of 'client_response_model.dart';
 ClientListModel _$ClientListModelFromJson(Map<String, dynamic> json) =>
     ClientListModel(
       page: json['page'] as int,
-      perPage: json['perPage'] as int,
+      per_page: json['per_page'] as int,
       total: json['total'] as int,
-      totalPages: json['totalPages'] as int,
+      total_pages: json['total_pages'] as int,
       data: (json['data'] as List<dynamic>)
           .map((e) => ClientModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -21,9 +21,9 @@ ClientListModel _$ClientListModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ClientListModelToJson(ClientListModel instance) =>
     <String, dynamic>{
       'page': instance.page,
-      'perPage': instance.perPage,
+      'per_page': instance.per_page,
       'total': instance.total,
-      'totalPages': instance.totalPages,
+      'total_pages': instance.total_pages,
       'support': instance.support,
       'data': instance.data,
     };

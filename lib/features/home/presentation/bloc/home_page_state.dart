@@ -11,7 +11,7 @@ class HomePageInitial extends HomePageState {
 
 class HomePageLoadInProgress extends HomePageState {
   @override
-  List<Object?> get props => [];
+  List<Object> get props => [];
 }
 
 class HomePageLoadSuccess extends HomePageState {
@@ -22,7 +22,7 @@ class HomePageLoadSuccess extends HomePageState {
   });
 
   @override
-  List<Object?> get props => [
+  List<Object> get props => [
         clientList,
       ];
 }
@@ -35,5 +35,5 @@ class HomePageLoadError extends HomePageState {
   });
 
   @override
-  List<Object?> get props => [message];
+  List<Object> get props => [message];
 }

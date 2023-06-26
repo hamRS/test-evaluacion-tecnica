@@ -13,6 +13,6 @@ class GetClientList extends UseCase<List<ClientModel>, NoParams> {
 
   @override
   Future<Either<Failure, List<ClientModel>>> call(NoParams params) async {
-    return await clientListRepository.getClientList();
+    return clientListRepository.getClientList();
   }
 }
