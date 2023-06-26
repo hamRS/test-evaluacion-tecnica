@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_tech/core/ui/constants/colors.dart';
 
-class LoginTextField extends StatelessWidget {
+class LoginTextField extends StatefulWidget {
   const LoginTextField({
     super.key,
     this.inputFormatters,
@@ -17,25 +17,34 @@ class LoginTextField extends StatelessWidget {
 
   final List<TextInputFormatter>? inputFormatters;
   final String? hintText;
-  final ValueChanged<String>? onChanged;
+  final Function? onChanged;
   final TextInputType? keyboardType;
   final bool? obscureText;
   final int? maxLength;
+
+  @override
+  State<LoginTextField> createState() => _LoginTextFieldState();
+}
+
+class _LoginTextFieldState extends State<LoginTextField> {
+  final TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return TextField(
-      maxLength: maxLength,
-      obscureText: obscureText ?? false,
-      onChanged: onChanged,
-      keyboardType: keyboardType,
-      inputFormatters: inputFormatters,
+      controller: _controller,
+      maxLength: widget.maxLength,
+      obscureText: widget.obscureText ?? false,
+      onChanged: (value) => widget.onChanged!(value),
+      keyboardType: widget.keyboardType,
+      inputFormatters: widget.inputFormatters,
       style: const TextStyle(
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w300,
         fontSize: 16,
       ),
       decoration: InputDecoration(
-        hintText: hintText ?? "",
+        hintText: widget.hintText ?? "",
         contentPadding: const EdgeInsets.symmetric(
           vertical: 8,
           horizontal: 8,
@@ -56,5 +65,11 @@ class LoginTextField extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

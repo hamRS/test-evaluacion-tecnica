@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tech/core/ui/constants/assets.dart';
 import 'package:flutter_tech/core/ui/constants/colors.dart';
 import 'package:flutter_tech/core/ui/constants/styles.dart';
 import 'package:flutter_tech/features/common/presentation/widgets/button_widget.dart';
+import 'package:flutter_tech/features/login/presentation/bloc/login_page_form_bloc.dart';
 import 'package:flutter_tech/features/login/presentation/widgets/login_text_field.dart';
 
 class LoginView extends StatelessWidget {
@@ -30,38 +32,73 @@ class LoginView extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: LoginTextField(
-                  hintText: 'Username',
-                  keyboardType: TextInputType.text,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(
-                      RegExp("[a-zA-Z]"),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: LoginTextField(
-                  obscureText: true,
-                  maxLength: 5,
-                  hintText: 'Password',
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                  ],
-                ),
-              ),
-              const ButtonWidget(title: 'Login'),
+              const _LoginForm(),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _LoginForm extends StatelessWidget {
+  const _LoginForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginPageFormBloc, LoginPageFormState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: LoginTextField(
+                onChanged: (value) {
+                  context.read<LoginPageFormBloc>().add(
+                        LoginPageUsernameChanged(
+                          usernameInput: value,
+                        ),
+                      );
+                },
+                hintText: 'Username',
+                keyboardType: TextInputType.text,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                    RegExp("[a-zA-Z]"),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: LoginTextField(
+                obscureText: true,
+                maxLength: 5,
+                hintText: 'Password',
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                onChanged: (value) {
+                  context.read<LoginPageFormBloc>().add(
+                        LoginPagePasswordChanged(
+                          passwordInput: value,
+                        ),
+                      );
+                },
+              ),
+            ),
+            ButtonWidget(
+              title: 'Login',
+              isEnabled: state.isValid,
+              onPressed: () {},
+            ),
+          ],
+        );
+      },
     );
   }
 }

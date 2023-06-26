@@ -7,11 +7,13 @@ class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
     super.key,
     required this.title,
-    this.onPressed,
+    required this.onPressed,
+    this.isEnabled = false,
   });
 
   final String title;
-  final Function? onPressed;
+  final Function onPressed;
+  final bool isEnabled;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -22,7 +24,7 @@ class ButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
       ),
-      onPressed: () => onPressed,
+      onPressed: isEnabled ? () => onPressed() : null,
       child: SizedBox(
         width: 120,
         height: 40,
