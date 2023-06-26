@@ -9,7 +9,6 @@ de seleccion ITTI
 - Injeccion de dependencia (GetIt)
 - BlockPattern (Flutter_bloc)
 
-## Tecnologias Utilizadas
- Build location 
-    - Android: build/app/outputs/flutter-apk/app-release.apk 
-    - apple: No puedo generar
+## Build Location 
+ - Android: build/app/outputs/flutter-apk/app-release.apk
+ - Apple: No puedo generar
