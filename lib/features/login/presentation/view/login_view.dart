@@ -103,7 +103,7 @@ class _LoginForm extends StatelessWidget {
             ),
             ButtonWidget(
               title: 'Login',
-              isEnabled: true,
+              isEnabled: state.isValid,
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(
