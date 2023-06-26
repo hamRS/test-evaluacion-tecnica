@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tech/core/routes/app_router.dart';
 import 'package:flutter_tech/features/login/presentation/page/login_page.dart';
+import 'package:flutter_tech/injection_container.dart';
 
-void main() {
+Future<void> main() async {
+  init();
   runApp(const MyApp());
 }
 

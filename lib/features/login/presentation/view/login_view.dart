@@ -7,6 +7,7 @@ import 'package:flutter_tech/core/ui/constants/assets.dart';
 import 'package:flutter_tech/core/ui/constants/colors.dart';
 import 'package:flutter_tech/core/ui/constants/styles.dart';
 import 'package:flutter_tech/features/common/presentation/widgets/button_widget.dart';
+import 'package:flutter_tech/features/home/presentation/page/home_page.dart';
 import 'package:flutter_tech/features/login/presentation/bloc/login_page_form_bloc.dart';
 import 'package:flutter_tech/features/login/presentation/validation/password_input.dart';
 import 'package:flutter_tech/features/login/presentation/validation/username_intput.dart';
@@ -103,7 +104,13 @@ class _LoginForm extends StatelessWidget {
             ButtonWidget(
               title: 'Login',
               isEnabled: state.isValid,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(
+                  context,
+                  HomePage.route,
+                );
+              },
             ),
           ],
         );
