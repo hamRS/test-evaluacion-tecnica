@@ -7,6 +7,7 @@ import 'package:flutter_tech/core/ui/constants/colors.dart';
 import 'package:flutter_tech/core/ui/constants/styles.dart';
 import 'package:flutter_tech/features/common/presentation/widgets/tech_app_bar.dart';
 import 'package:flutter_tech/features/home/presentation/bloc/home_page_bloc.dart';
+import 'package:flutter_tech/features/home/presentation/page/client_details_page.dart';
 import 'package:flutter_tech/features/home/presentation/widgets/list_item_widget.dart';
 import 'package:flutter_tech/features/login/presentation/page/login_page.dart';
 
@@ -29,11 +30,20 @@ class HomeView extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: state.clientList.length,
                 itemBuilder: (context, index) {
-                  return ListItemWidget(
-                    avatar: state.clientList[index].avatar,
-                    correo: state.clientList[index].email,
-                    nombreApellido:
-                        "${state.clientList[index].first_name} ${state.clientList[index].last_name}",
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        ClientDetailsPage.route,
+                        arguments: state.clientList[index],
+                      );
+                    },
+                    child: ListItemWidget(
+                      avatar: state.clientList[index].avatar,
+                      correo: state.clientList[index].email,
+                      nombreApellido:
+                          "${state.clientList[index].first_name} ${state.clientList[index].last_name}",
+                    ),
                   );
                 },
               );
